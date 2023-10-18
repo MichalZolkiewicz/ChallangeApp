@@ -1,71 +1,56 @@
-﻿int number = 10101010;
-string numberAsString = number.ToString();
-char[] letters = numberAsString.ToArray();
+﻿using ChallangeApp;
 
-int couter0 = 0;
-int couter1 = 0;
-int couter2 = 0;
-int couter3 = 0;
-int couter4 = 0;
-int couter5 = 0;
-int couter6 = 0;
-int couter7 = 0;
-int couter8 = 0;
-int couter9 = 0;
+Employee employee1 = new Employee("Michal", "Zolkiewicz", 32);
+Employee employee2 = new Employee("Jan", "Kowalski", 40);
+Employee employee3 = new Employee("Tomasz", "Nowak", 25);
 
-foreach(char letter in letters)
+employee1.AddScore(1);
+employee1.AddScore(5);
+employee1.AddScore(5);
+
+employee2.AddScore(8);
+employee2.AddScore(5);
+employee2.AddScore(5);
+
+employee3.AddScore(10);
+employee3.AddScore(5);
+employee3.AddScore(3);
+
+List<Employee> employees = new List<Employee>
 {
-    if(letter == '0')
+    employee1, employee2, employee3
+};
+
+List<Employee> employeesWithSameScore = new List<Employee>();
+
+int maxResult = -1;
+Employee employeeWithMaxResult = null;
+
+foreach(var employee in employees)
+{
+    if(employee.Result > maxResult)
     {
-        couter0++;
+       
+        employeeWithMaxResult = employee;
+        maxResult = employee.Result;
     }
-    else if(letter == '1')
+    else if (employee.Result == maxResult)
     {
-        couter1++;
-    }
-    else if (letter == '2')
-    {
-        couter2++;
-    }
-    else if (letter == '3')
-    {
-        couter3++;
-    }
-    else if (letter == '4')
-    {
-        couter4++;
-    }
-    else if (letter == '5')
-    {
-        couter5++;
-    }
-    else if (letter == '6')
-    {
-        couter6++;
-    }
-    else if (letter == '7')
-    {
-        couter7++;
-    }
-    else if (letter == '8')
-    {
-        couter8++;
-    }
-    else if (letter == '9')
-    {
-        couter9++;
+        employeesWithSameScore.Add(employee);
     }
 }
 
-Console.WriteLine("0 => " + couter0);
-Console.WriteLine("1 => " + couter1);
-Console.WriteLine("2 => " + couter2);
-Console.WriteLine("3 => " + couter3);
-Console.WriteLine("4 => " + couter4);
-Console.WriteLine("5 => " + couter5);
-Console.WriteLine("6 => " + couter6);
-Console.WriteLine("7 => " + couter7);
-Console.WriteLine("8 => " + couter8);
-Console.WriteLine("9 => " + couter9);
+Console.WriteLine(employeeWithMaxResult.Name);
+Console.WriteLine(employeeWithMaxResult.Surname);
+Console.WriteLine(employeeWithMaxResult.Age);
 
-Console.ReadKey();
+foreach(var employee in employeesWithSameScore)
+{
+    Console.WriteLine();
+    Console.WriteLine("Employees with the same score:");
+    Console.WriteLine();
+    Console.WriteLine(employee.Name);
+    Console.WriteLine(employee.Surname);
+    Console.WriteLine(employee.Age);
+}
+
