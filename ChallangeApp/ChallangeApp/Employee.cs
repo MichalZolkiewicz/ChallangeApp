@@ -28,5 +28,10 @@
         {
             this.points.Add(number);
         }
+
+        public void RemoveScore(int number)
+        {
+            this.points.Remove(number);
+        }
     }
 }
