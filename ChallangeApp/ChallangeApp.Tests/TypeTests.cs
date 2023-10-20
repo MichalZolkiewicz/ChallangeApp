@@ -9,8 +9,6 @@
             int number1 = 1;
             int number2 = 2;
 
-            // act
-
             // assert
             Assert.AreNotEqual(number1, number2);
         }
@@ -22,8 +20,6 @@
             float number1 = 10;
             float number2 = 10;
 
-            // act
-
             // assert
             Assert.AreEqual(number1, number2);
         }
@@ -34,8 +30,6 @@
             // arrange
             var employee1 = GetEmployee("Michal", "Zolkiewicz", 32);
             var employee2 = GetEmployee("Tomasz", "Nowak", 40);
-
-            // act
 
             // assert
             Assert.AreNotEqual(employee1, employee2);   
