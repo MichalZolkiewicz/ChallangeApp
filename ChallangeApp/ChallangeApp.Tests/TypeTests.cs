@@ -25,6 +25,17 @@
         }
 
         [Test]
+        public void WhenTwoDifferentDoubles_ShouldNotBeEqual()
+        {
+            // arrange
+            double number1 = 3.14;
+            double number2 = 2.56;
+
+            // assert
+            Assert.AreNotEqual(number1, number2);
+        }
+
+        [Test]
         public void GetEmployeeShouldReturnDifferentObjects()
         {
             // arrange
