@@ -16,7 +16,7 @@ namespace ChallangeApp.Tests
             var result = employee.Result;
 
             // assert
-            Assert.AreEqual(0, result);
+            Assert.AreEqual(0, result); 
         }
 
         [Test]
