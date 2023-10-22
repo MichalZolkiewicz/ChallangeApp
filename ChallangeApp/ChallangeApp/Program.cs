@@ -1,20 +1,24 @@
 ﻿using ChallangeApp;
 
-Employee employee1 = new Employee("Michal", "Zolkiewicz", 32);
+Employee employee = new Employee("Michal", "Zolkiewicz", 32);
 
 int gradeInt = 1;
 double gradeDouble = 2.5;
 
-employee1.AddGrade("Michał");
-employee1.AddGrade("101");
-employee1.AddGrade('5');
-employee1.AddGrade('k');
-employee1.AddGrade(gradeInt);
-employee1.AddGrade(gradeDouble);
-employee1.AddGrade(5);
-employee1.AddGrade(5);
+employee.AddGrade("Michał");
+employee.AddGrade("101");
+employee.AddGrade('5');
+employee.AddGrade('k');
+employee.AddGrade(gradeInt);
+employee.AddGrade(gradeDouble);
+employee.AddGrade(5f);
+employee.AddGrade(5);
 
-var statistics = employee1.GetStatistics();
+var statistics = employee.GetStatistics();
+var statistics1 = employee.GetStatisticsWithFor();
+var statistics2 = employee.GetStatisticsWithForEach();
+var statistics3 = employee.GetStatisticsWithDoWhile();
+var statistics4 = employee.GetStatisticsWithWhile();
 
 Console.WriteLine();
 Console.WriteLine($"Average: {statistics.Average:N2}");
