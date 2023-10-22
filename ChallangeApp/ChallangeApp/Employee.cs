@@ -3,7 +3,7 @@
     public class Employee
     {
 
-        private List<int> points = new List<int>();
+        private List<float> grades = new List<float>();
         public Employee(string name, string surname, int age)
         {
             this.Name = name;
@@ -16,22 +16,41 @@
 
         public int Age { get; private set; }
 
-        public int Result
+        public float Result
         {
             get
             {
-                return this.points.Sum();
+                return this.grades.Sum();
             }
         }
 
-        public void AddScore(int number)
+        public void AddGrade(float number)
         {
-            this.points.Add(number);
+            this.grades.Add(number);
         }
 
-        public void RemoveScore(int number)
+        public void RemoveGrade(float grade)
         {
-            this.points.Remove(number);
+            this.grades.Remove(grade);
+        }
+
+        public Statistics GetStatistics()
+        {
+            var statistics = new Statistics();
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            foreach (var grade in this.grades) 
+            {
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.Average += grade;
+            }
+
+            statistics.Average = statistics.Average / this.grades.Count;
+
+            return statistics;
         }
     }
 }

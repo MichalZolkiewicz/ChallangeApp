@@ -4,17 +4,17 @@ Employee employee1 = new Employee("Michal", "Zolkiewicz", 32);
 Employee employee2 = new Employee("Jan", "Kowalski", 40);
 Employee employee3 = new Employee("Tomasz", "Nowak", 25);
 
-employee1.AddScore(1);
-employee1.AddScore(5);
-employee1.AddScore(5);
+employee1.AddGrade(1);
+employee1.AddGrade(5);
+employee1.AddGrade(5);
 
-employee2.AddScore(8);
-employee2.AddScore(5);
-employee2.AddScore(5);
+employee2.AddGrade(8);
+employee2.AddGrade(5);
+employee2.AddGrade(5);
 
-employee3.AddScore(10);
-employee3.AddScore(5);
-employee3.AddScore(3);
+employee3.AddGrade(10);
+employee3.AddGrade(5);
+employee3.AddGrade(3);
 
 List<Employee> employees = new List<Employee>
 {
@@ -23,7 +23,7 @@ List<Employee> employees = new List<Employee>
 
 List<Employee> employeesWithSameScore = new List<Employee>();
 
-int maxResult = -1;
+float maxResult = -1;
 Employee employeeWithMaxResult = null;
 
 foreach(var employee in employees)
@@ -54,5 +54,9 @@ foreach(var employee in employeesWithSameScore)
     Console.WriteLine(employee.Age);
 }
 
+var statistics = employee1.GetStatistics();
 
-
+Console.WriteLine();
+Console.WriteLine($"Average: {statistics.Average:N2}");
+Console.WriteLine($"Min: {statistics.Min}");
+Console.WriteLine($"Max: {statistics.Max}");
