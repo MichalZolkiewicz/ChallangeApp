@@ -81,24 +81,6 @@ namespace ChallangeApp
             this.grades.Remove(grade);
         }
 
-        public Statistics GetStatistics()
-        {
-            var statistics = new Statistics();
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
-            foreach (var grade in this.grades) 
-            {
-                statistics.Max = Math.Max(statistics.Max, grade);
-                statistics.Min = Math.Min(statistics.Min, grade);
-                statistics.Average += grade;
-            }
-
-            statistics.Average /= this.grades.Count;
-            return statistics;
-        }
-
         public Statistics GetStatisticsWithForEach()
         {
             var statistics = new Statistics();
