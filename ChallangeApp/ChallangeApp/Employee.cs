@@ -24,9 +24,52 @@
             }
         }
 
-        public void AddGrade(float number)
+        public void AddGrade(float grade)
         {
-            this.grades.Add(number);
+            if (grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+            }
+            else
+            {
+                Console.WriteLine("Invalid grade value");
+            }            
+        }
+
+        public void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                Console.WriteLine("String is not float");
+            }
+        }
+
+        public void AddGrade(char grade)
+        {
+            if (float.TryParse(grade.ToString(), out float result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                Console.WriteLine("Char is not float");
+            }
+        }
+
+        public void AddGrade(int grade)
+        {
+            float value = (float)grade;
+            this.AddGrade(value);
+        }
+
+        public void AddGrade(double grade)
+        {
+            float value = (float)grade;
+            this.AddGrade(value); 
         }
 
         public void RemoveGrade(float grade)
@@ -49,7 +92,6 @@
             }
 
             statistics.Average = statistics.Average / this.grades.Count;
-
             return statistics;
         }
     }
