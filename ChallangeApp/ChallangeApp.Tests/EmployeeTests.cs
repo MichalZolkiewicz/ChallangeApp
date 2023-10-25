@@ -6,7 +6,7 @@ namespace ChallangeApp.Tests
         public void WhenEmployeeColletScores_ShouldCorrectResult()
         {
             // arrange
-            var employee = new Employee("Micha³", "Zolkiewicz", 32, 'M');
+            var employee = new Employee("Micha³", "Zolkiewicz", 32);
             employee.AddGrade(4);
             employee.AddGrade(5);
             employee.AddGrade(100);
@@ -23,7 +23,7 @@ namespace ChallangeApp.Tests
         public void WhenScoreIsRemoved_ShouldCorrectResult()
         {
             //arrange
-            var employee = new Employee("Micha³", "Zolkiewicz", 32, 'M');
+            var employee = new Employee("Micha³", "Zolkiewicz", 32);
 
             //act
             employee.AddGrade(4);
@@ -38,7 +38,7 @@ namespace ChallangeApp.Tests
         [Test]
         public void WhenGetStatisticsUsed_ShouldReturnCorrectMinValue ()
         {
-            var employee = new Employee("Micha³", "Zolkiewicz", 32, 'M');
+            var employee = new Employee("Micha³", "Zolkiewicz", 32);
 
 
             employee.AddGrade(4.16f);
@@ -54,7 +54,7 @@ namespace ChallangeApp.Tests
         [Test]
         public void WhenGetStatisticsUsed_ShouldReturnCorrectMaxValue()
         {
-            var employee = new Employee("Micha³", "Zolkiewicz", 32, 'M');
+            var employee = new Employee("Micha³", "Zolkiewicz", 32);
 
 
             employee.AddGrade(4.16f);
@@ -70,7 +70,7 @@ namespace ChallangeApp.Tests
         [Test]
         public void WhenGetStatisticsUsed_ShouldReturnCorrectAvgValue()
         {
-            var employee = new Employee("Micha³", "Zolkiewicz", 32, 'M');
+            var employee = new Employee("Micha³", "Zolkiewicz", 32);
 
 
             employee.AddGrade(4.16f);
@@ -87,7 +87,7 @@ namespace ChallangeApp.Tests
         public void WhenLettersAreInput_ShouldReturnCorrectResult()
         {
             // arrange
-            var employee = new Employee("Micha³", "Zolkiewicz", 32, 'M');
+            var employee = new Employee("Micha³", "Zolkiewicz", 32);
             employee.AddGrade('A');
             employee.AddGrade("a");
             employee.AddGrade('B');
@@ -107,7 +107,7 @@ namespace ChallangeApp.Tests
         public void WhenGradesAreInput_ShouldReturnCorrectAvgLetter()
         {
             // arrange
-            var employee = new Employee("Micha³", "Zolkiewicz", 32, 'M');
+            var employee = new Employee("Micha³", "Zolkiewicz", 32);
             employee.AddGrade(90);
             employee.AddGrade(60);
             employee.AddGrade(95);
@@ -123,7 +123,7 @@ namespace ChallangeApp.Tests
         public void WhenLettersAreInput_ShouldReturnCorrectAvgLetter()
         {
             // arrange
-            var employee = new Employee("Micha³", "Zolkiewicz", 32, 'M');
+            var employee = new Employee("Micha³", "Zolkiewicz", 32);
             employee.AddGrade('A');
             employee.AddGrade("a");
             employee.AddGrade('B');
