@@ -1,44 +1,33 @@
-﻿namespace ChallangeApp
+﻿using System.Diagnostics;
+
+namespace ChallangeApp
 {
-    public class Employee : IEmployee
+    public class EmployeeInFile : EmployeeBase
     {
 
-        private List<float> grades = new List<float>();
-              
-        public Employee(string name, string surname, int age)
+        private const string fileName = "grades.txt";
+        public EmployeeInFile(string name, string surname, int age) 
+            : base(name, surname, age)
         {
-            this.Name = name;
-            this.Surname = surname;
-            this.Age = age;
         }
 
-        public string Name { get; private set; }
-
-        public string Surname { get; private set; }
-
-        public int Age { get; private set; }
-
-        public float Result
-        {
-            get
-            {
-                return this.grades.Sum();
-            }
-        }
-
-        public void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
-                this.grades.Add(grade);
+                using (var writer = File.AppendText(fileName))
+                {
+                    writer.WriteLine(grade);
+                }
             }
             else
             {
                 throw new Exception("Invalid grade value");
-            }            
+            }
+            
         }
 
-        public void AddGrade(string grade)
+        public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
             {
@@ -54,7 +43,7 @@
             }
         }
 
-        public void AddGrade(char grade)
+        public override void AddGrade(char grade)
         {
             switch (grade)
             {
@@ -83,40 +72,54 @@
             }
         }
 
-        public void AddGrade(int grade)
+        public override void AddGrade(int grade)
         {
             float value = (float)grade;
             this.AddGrade(value);
         }
 
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             float value = (float)grade;
-            this.AddGrade(value); 
+            this.AddGrade(value);
         }
 
-        public void RemoveGrade(float grade)
+        private List<float> GetGradesFromFile()
         {
-            this.grades.Remove(grade);
+            var grades = new List<float>();
+            if(File.Exists($"{fileName}"))
+            {
+                using(var reader = File.OpenText($"{fileName}"))
+                {
+                    var line = reader.ReadLine();
+                    while(line != null)
+                    {
+                        float grade = float.Parse(line);
+                        grades.Add(grade);
+                        line = reader.ReadLine();   
+                    }
+                }
+            }
+            return grades;
         }
 
-        public Statistics GetStatistics()
+        private Statistics CountStatistics(List<float> grades)
         {
             var statistics = new Statistics();
             statistics.Average = 0;
             statistics.Max = float.MinValue;
             statistics.Min = float.MaxValue;
 
-            foreach (var grade in this.grades)
+            foreach (var grade in grades)
             {
                 statistics.Max = Math.Max(statistics.Max, grade);
                 statistics.Min = Math.Min(statistics.Min, grade);
                 statistics.Average += grade;
             }
 
-            statistics.Average /= this.grades.Count;
+            statistics.Average /= grades.Count;
 
-            switch(statistics.Average)
+            switch (statistics.Average)
             {
                 case var average when average >= 80:
                     statistics.AverageLetter = 'A';
@@ -137,6 +140,13 @@
                     statistics.AverageLetter = 'E';
                     break;
             }
+            return statistics;
+        }
+
+        public override Statistics GetStatistics()
+        {
+            var gradesFromFile = this.GetGradesFromFile();
+            var statistics = this.CountStatistics(gradesFromFile);
             return statistics;
         }
     }
