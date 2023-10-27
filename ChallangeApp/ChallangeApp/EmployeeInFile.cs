@@ -5,6 +5,8 @@ namespace ChallangeApp
     public class EmployeeInFile : EmployeeBase
     {
 
+        public override event GradeAddedDelegate GradeAdded;
+
         private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname, int age) 
             : base(name, surname, age)
@@ -18,6 +20,10 @@ namespace ChallangeApp
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
+                    if(GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                 }
             }
             else
@@ -132,9 +138,6 @@ namespace ChallangeApp
                     break;
                 case var average when average >= 20:
                     statistics.AverageLetter = 'D';
-                    break;
-                case var average when average >= 80:
-                    statistics.AverageLetter = 'A';
                     break;
                 default:
                     statistics.AverageLetter = 'E';

@@ -4,6 +4,10 @@ namespace ChallangeApp
 {
     public abstract class EmployeeBase : IEmployee
     {
+
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+        public abstract event GradeAddedDelegate GradeAdded;
         public string Name { get; private set; }
 
         public string Surname { get; private set; }
